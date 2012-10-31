@@ -1,0 +1,8 @@
+coverage==3.5.3
+dj-database-url==0.2.1
+django-extensions==1.0.0
+django-nose==1.1
+django-patterns==0.0.1
+nose==1.2.1
+nose-exclude==0.1.9
+nosexcover==1.0.7

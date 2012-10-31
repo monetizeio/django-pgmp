@@ -1,0 +1,13 @@
+*.pyc
+.*.swp
+Makefile.local
+.cache/
+.pkg/
+.rbenv-version
+tmp/
+cookbooks/
+.vagrant
+build/
+.coverage
+MANIFEST
+dist/

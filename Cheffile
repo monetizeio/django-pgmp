@@ -1,0 +1,33 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+# === Cheffile ------------------------------------------------------------===
+# This file is part of django-pgpm. django-pgpm is copyright © 2012, RokuSigma
+# Inc. and contributors. See AUTHORS and LICENSE for more details.
+#
+# django-pgpm is free software: you can redistribute it and/or modify it under
+# the terms of the GNU Lesser General Public License as published by the Free
+# Software Foundation, either version 3 of the License, or (at your option)
+# any later version.
+#
+# django-pgpm is distributed in the hope that it will be useful, but WITHOUT
+# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+# FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License
+# for more details.
+#
+# You should have received a copy of the GNU Lesser General Public License
+# along with django-pgpm. If not, see <http://www.gnu.org/licenses/>.
+# ===----------------------------------------------------------------------===
+
+site 'http://community.opscode.com/api/v1'
+
+cookbook 'build-essential',
+    :git => 'git://github.com/opscode-cookbooks/build-essential.git'
+cookbook 'postgresql',
+    :git => 'git://github.com/denyago/chef-postgresql.git'
+cookbook 'postgresql-pgmp',
+    :git => 'git://github.com/monetizeio/chef-postgresql-pgmp.git'
+
+# ===--------------------------------------------------------------------===
+# End of File
+# ===--------------------------------------------------------------------===
