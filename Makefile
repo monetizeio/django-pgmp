@@ -126,6 +126,10 @@ ${CACHE_ROOT}/virtualenv/virtualenv-1.8.2.tar.gz:
 	mkdir -p "${CACHE_ROOT}"/virtualenv
 	sh -c "cd "${CACHE_ROOT}"/virtualenv && curl -O 'http://pypi.python.org/packages/source/v/virtualenv/virtualenv-1.8.2.tar.gz'"
 
+${CACHE_ROOT}/gmpy2/gmpy2-2.0.0b2.zip:
+	mkdir -p "${CACHE_ROOT}"/gmpy2
+	sh -c "cd "${CACHE_ROOT}"/gmpy2 && curl -O 'http://gmpy.googlecode.com/files/gmpy2-2.0.0b2.zip'"
+
 ${CACHE_ROOT}/rbenv/rbenv-0.3.0.tar.gz:
 	mkdir -p ${CACHE_ROOT}/rbenv
 	curl -L 'https://nodeload.github.com/sstephenson/rbenv/tar.gz/v0.3.0' >'$@'
@@ -134,7 +138,7 @@ ${CACHE_ROOT}/rbenv/ruby-build-20120815.tar.gz:
 	mkdir -p ${CACHE_ROOT}/rbenv
 	curl -L 'https://nodeload.github.com/sstephenson/ruby-build/tar.gz/v20120815' >'$@'
 
-${PKG_ROOT}/.stamp-h: ${ROOT}/conf/requirements.* ${CACHE_ROOT}/virtualenv/virtualenv-1.8.2.tar.gz ${CACHE_ROOT}/rbenv/rbenv-0.3.0.tar.gz ${CACHE_ROOT}/rbenv/ruby-build-20120815.tar.gz
+${PKG_ROOT}/.stamp-h: ${ROOT}/conf/requirements.* ${CACHE_ROOT}/virtualenv/virtualenv-1.8.2.tar.gz ${CACHE_ROOT}/gmpy2/gmpy2-2.0.0b2.zip ${CACHE_ROOT}/rbenv/rbenv-0.3.0.tar.gz ${CACHE_ROOT}/rbenv/ruby-build-20120815.tar.gz
 	# Because build and run-time dependencies are not thoroughly tracked,
 	# it is entirely possible that rebuilding the development environment
 	# on top of an existing one could result in a broken build. For the
@@ -168,6 +172,12 @@ ${PKG_ROOT}/.stamp-h: ${ROOT}/conf/requirements.* ${CACHE_ROOT}/virtualenv/virtu
 	# readline is installed here to get around a bug on Mac OS X which is
 	# causing readline to not build properly if installed from pip.
 	"${PKG_ROOT}"/bin/easy_install readline
+	
+	# gmpy2 is installed here since the 2.x series is not yet included in the
+	# python packaging index.
+	CFLAGS=-I/opt/local/include LDFLAGS=-L/opt/local/lib \
+	"${PKG_ROOT}"/bin/easy_install \
+	    "${CACHE_ROOT}"/gmpy2/gmpy2-2.0.0b2.zip
 	
 	# pip is used to install Python dependencies for this project.
 	for reqfile in "${ROOT}"/conf/requirements*.pip; do \

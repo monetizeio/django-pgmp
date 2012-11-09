@@ -19,7 +19,10 @@
 # along with django-pgpm. If not, see <http://www.gnu.org/licenses/>.
 # ===----------------------------------------------------------------------===
 
-from gmpy import mpz
+try:
+    from gmpy2 import mpz
+except ImportError:
+    from gmpy import mpz
 from django.db import models
 
 class MultiPrecisionIntegerField(models.IntegerField):

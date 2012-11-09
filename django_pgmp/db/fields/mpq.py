@@ -19,7 +19,10 @@
 # along with django-pgpm. If not, see <http://www.gnu.org/licenses/>.
 # ===----------------------------------------------------------------------===
 
-from gmpy import mpq
+try:
+    from gmpy2 import mpq
+except ImportError:
+    from gmpy import mpq
 from django.db import models
 
 class MultiPrecisionFractionField(models.FloatField):
@@ -35,7 +38,7 @@ class MultiPrecisionFractionField(models.FloatField):
     def get_prep_value(self, value):
         if value is None:
             return None
-        return str(value)
+        return '/'.join(map(str, (value.numerator, value.denominator)))
 
     def to_python(self, value):
         if value is None:
