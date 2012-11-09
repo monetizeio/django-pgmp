@@ -122,6 +122,10 @@ vmdestroy:
 
 # ===--------------------------------------------------------------------===
 
+${CACHE_ROOT}/virtualenv/virtualenv-1.8.2.tar.gz:
+	mkdir -p "${CACHE_ROOT}"/virtualenv
+	sh -c "cd "${CACHE_ROOT}"/virtualenv && curl -O 'http://pypi.python.org/packages/source/v/virtualenv/virtualenv-1.8.2.tar.gz'"
+
 ${CACHE_ROOT}/rbenv/rbenv-0.3.0.tar.gz:
 	mkdir -p ${CACHE_ROOT}/rbenv
 	curl -L 'https://nodeload.github.com/sstephenson/rbenv/tar.gz/v0.3.0' >'$@'
@@ -130,11 +134,7 @@ ${CACHE_ROOT}/rbenv/ruby-build-20120815.tar.gz:
 	mkdir -p ${CACHE_ROOT}/rbenv
 	curl -L 'https://nodeload.github.com/sstephenson/ruby-build/tar.gz/v20120815' >'$@'
 
-${CACHE_ROOT}/virtualenv/virtualenv-1.8.2.tar.gz:
-	mkdir -p "${CACHE_ROOT}"/virtualenv
-	sh -c "cd "${CACHE_ROOT}"/virtualenv && curl -O 'http://pypi.python.org/packages/source/v/virtualenv/virtualenv-1.8.2.tar.gz'"
-
-${PKG_ROOT}/.stamp-h: ${ROOT}/conf/requirements.* ${CACHE_ROOT}/rbenv/rbenv-0.3.0.tar.gz ${CACHE_ROOT}/rbenv/ruby-build-20120815.tar.gz ${CACHE_ROOT}/virtualenv/virtualenv-1.8.2.tar.gz
+${PKG_ROOT}/.stamp-h: ${ROOT}/conf/requirements.* ${CACHE_ROOT}/virtualenv/virtualenv-1.8.2.tar.gz ${CACHE_ROOT}/rbenv/rbenv-0.3.0.tar.gz ${CACHE_ROOT}/rbenv/ruby-build-20120815.tar.gz
 	# Because build and run-time dependencies are not thoroughly tracked,
 	# it is entirely possible that rebuilding the development environment
 	# on top of an existing one could result in a broken build. For the
