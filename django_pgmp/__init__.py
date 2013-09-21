@@ -19,7 +19,7 @@
 # along with django-pgpm. If not, see <http://www.gnu.org/licenses/>.
 # ===----------------------------------------------------------------------===
 
-VERSION = (0,0,3, 'final', 0)
+VERSION = (0,0,4, 'alpha', 0)
 
 def get_version():
   version = '%s.%s' % (VERSION[0], VERSION[1])
