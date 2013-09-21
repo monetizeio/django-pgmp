@@ -49,6 +49,17 @@ class MultiPrecisionFractionField(models.FloatField):
             msg = self.error_messages['invalid'] % str(value)
             raise exceptions.ValidationError(msg)
 
+    def south_field_triple(self):
+        "Returns a suitable description of this field for South."
+        # We'll just introspect the _actual_ field.
+        from south.modelsinspector import introspector
+        field_class = '.'.join([
+            self.__class__.__module__,
+            self.__class__.__name__])
+        args, kwargs = introspector(self)
+        # That's our definition!
+        return (field_class, args, kwargs)
+
 # ===----------------------------------------------------------------------===
 # End of File
 # ===----------------------------------------------------------------------===
