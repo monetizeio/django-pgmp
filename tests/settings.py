@@ -25,7 +25,7 @@ from django_patterns.test.project.settings import *
 import dj_database_url
 DATABASES = {
     'default': dj_database_url.config(
-        default='postgres://django:password@localhost:5432/django')
+        default='postgres://django:password@localhost:5432/django'),
 }
 
 # Use django_patterns to detect embedded Django test applications, and add
