@@ -24,7 +24,7 @@ GEM
     childprocess (0.3.6)
       ffi (~> 1.0, >= 1.0.6)
     erubis (2.7.0)
-    ffi (1.1.5)
+    ffi (1.11.1)
     highline (1.6.15)
     i18n (0.6.1)
     ipaddress (0.8.0)
